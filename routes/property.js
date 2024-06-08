@@ -19,19 +19,26 @@ function verifyrole(req,res,next){
 
 
 
-router.post('/', isLoggedIn,verifyrole, upload.single("image"),async function(req, res, next) {
-  try {
-    const newProperty = new PropertySchema({
-        ...req.body,
-        image: req.file.filename,
-        owner:req.user._id,
-    })
-    await newProperty.save();
-    res.send("property created!")
-  } catch (error) {
-    res.send(error.message);
-  }
-});
+
+router.post(
+    "/",
+    isLoggedIn,
+    verifyrole,
+    upload.single("image"),
+    async function (req, res, next) {
+        try {
+            const newproperty = new PropertySchema({
+                ...req.body,
+                image: req.file.filename,
+                owner: req.user._id,
+            });
+            await newproperty.save();
+            res.send("Property Created!");
+        } catch (error) {
+            res.send(error.message);
+        }
+    }
+);
 
 
 

@@ -1,7 +1,7 @@
-exports.isLoggedIn = (req,res ,next) => {
-    if(req.isAuthenticated()){
+exports.isLoggedIn = (req, res, next) => {
+    if (req.isAuthenticated()) {
         next();
-    }else{
-        req.send("log in is required")
+    } else {
+        res.send("Log in to access the resource.");
     }
-}
+};

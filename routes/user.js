@@ -17,6 +17,10 @@ router.get('/', isLoggedIn, function(req, res, next) {
   res.send("homepage")
 });
 
+router.post("/current", isLoggedIn, function (req, res, next) {
+  res.send(req.user);
+});
+
 
 router.post("/register", async function (req, res, next) {
   try {
@@ -37,13 +41,11 @@ router.post(
   }
 );
 
-router.post("/logout", function(req,res,next) {
-  req.logOut(() => {
-    res.send("user logged out")
-  })
-})
-
-
+router.get("/logout", function (req, res, next) {
+  req.logout(() => {
+      res.send("user logged out");
+  });
+});
 
 
 module.exports = router;
