@@ -7,7 +7,7 @@ function verifyrole(req, res, next) {
     if (req.user.role == "buyer") {
         next();
     } else {
-        res.send("Only buyer have the permission to get appointment property");
+        res.send("Only buyer have the permission to get appointment property <a href='/user/profile'>Profile</a>");
     }
 }
 
