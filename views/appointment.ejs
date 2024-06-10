@@ -1,0 +1,11 @@
+<%- include("partials/header") %>
+
+<h1>welcome to appointment</h1>
+
+<form action="/appointment/<%= pid %>" method="post">
+    <input type="text" placeholder="scheaduled, completed, cancelled" name="status">
+    <input type="date" placeholder="date" name="date">
+    <input type="submit">
+</form>
+
+<%- include("partials/footer") %>

@@ -9,7 +9,17 @@
 <body>
 
   <nav class="bg-red-100">
-    <a href="/">home</a>
-    <a href="/user/login">login</a>
-    <a href="/user/logout">logout</a>
+
+    <% if(user){ %>
+      <a href="/user/logout">logout</a>
+      <a href="/user">home</a>
+    <% }else{ %>
+      <a href="/user/login">login</a>
+      <a href="/user/register">register</a>
+      <a href="/user">home</a>
+    <% } %>
+
+    
+    
+    
   </nav>

@@ -11,6 +11,13 @@ function verifyrole(req, res, next) {
     }
 }
 
+router.get("/:propertyid", isLoggedIn,verifyrole, function(req,res,next){
+    res.render("appointment", {
+        user:req.user,
+        pid:req.params.propertyid,
+    })
+})
+
 router.post(
     "/:propertyid",
     isLoggedIn,
@@ -23,7 +30,8 @@ router.post(
                 property: req.params.propertyid,
             });
             await newappointment.save();
-            res.send("Appointment Created!");
+            // res.send("appointment scheduled")
+            res.redirect("/user/profile");
         } catch (error) {
             res.send(error.message);
         }

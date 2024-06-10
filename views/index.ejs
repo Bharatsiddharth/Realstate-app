@@ -1,5 +1,23 @@
 <%- include("partials/header") %>
 
-<h1>hello</h1>
+<h1>hello Homepage</h1>
+
+
+        <div class="mb-10 p-10 bg-green-300">
+            <a href="/property">Create Property</a>
+        </div>
+
+
+        <div class="flex w-full wrap gap-10">
+            <% properties.forEach(p=> { %>
+              <!--  -->
+              <div class="overflow-auto p-5 bg-red-100 w-[20%]">
+                <%= JSON.stringify(p)%>
+                  <br> <br>
+                  <a class="rounded bg-green-300 px-4 py-2" href="/appointment/<%= p._id%>">Get Appointment</a>
+              </div>
+              <!--  -->
+            <% }) %>
+
 
 <%- include("partials/footer") %>

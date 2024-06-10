@@ -17,7 +17,7 @@ passport.use(UserSchema.createStrategy());
 router.get('/',async function(req, res, next) {
   try {
     const properties = await PropertySchema.find();
-    res.render("index", {properties: properties})
+    res.render("index", {user:req.user ,properties: properties})
   } catch (error) {
     res.send(error.message)
   }
@@ -45,7 +45,7 @@ router.post("/register", async function (req, res, next) {
       const { name, email, password, role } = req.body;
       const newuser = new UserSchema({ name, email, role });
       await UserSchema.register(newuser, password);
-      res.redirect("/login")
+      res.redirect("/user/login")
   } catch (error) {
       res.send(error.message);
   }
@@ -53,10 +53,11 @@ router.post("/register", async function (req, res, next) {
 
 router.post(
   "/login",
-  passport.authenticate("local"),
-  function (req, res, next) {
-      res.redirect("/user/profile")
-  }
+  passport.authenticate("local", {
+      successRedirect: "/user/profile",
+      failureRedirect: "/user/login",
+  }),
+    
 );
 
 router.get("/profile",isLoggedIn,async function (req, res, next) {

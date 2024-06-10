@@ -1,5 +1,27 @@
-<%- include("partials/header") %>
+<%- include("partials/header")%>
+  <div class="mt-10 w-[80%] mx-auto p-10">
+    <h1 class="text-3xl mb-10">This is Profile</h1>
 
-<h1>welcome to profile</h1>
+    <% if(user.role=="seller" || user.role=="agent" ){ %>
+      <!-- -->
+      <div class="mb-10 p-10 bg-green-300">
+        <a href="/property">Create Property</a>
+      </div>
+      <!--  -->
+      <% }%>
 
-<%- include("partials/footer") %>
+
+        <div class="flex w-full wrap gap-10">
+          <% properties.forEach(p=> { %>
+            <!--  -->
+            <div class="overflow-auto p-5 bg-red-100 w-[20%]">
+              <%= JSON.stringify(p)%>
+                <br> <br>
+                <a class="rounded bg-green-300 px-4 py-2" href="/appointment/<%= p._id%>">Get Appointment</a>
+            </div>
+            <!--  -->
+            <% }) %>
+        </div>
+        <a href="/user/logout">Logout</a>
+  </div>
+  <%- include("partials/footer")%>
